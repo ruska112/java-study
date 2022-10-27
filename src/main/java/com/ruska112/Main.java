@@ -2,7 +2,7 @@ package com.ruska112;
 
 import com.ruska112.lab2.FinanceReport;
 import com.ruska112.lab2.Payment;
-import ruska112.com.github.lab2.*;
+import com.ruska112.lab2.*;
 
 public class Main {
     public static void main(String[] args) {

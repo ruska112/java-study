@@ -1,6 +1,6 @@
 package com.ruska112.c3d;
 
-import ruska112.com.github.c3d.*;
+import com.ruska112.c3d.*;
 
 public class Vector3DArray {
     private final Vector3D[] vectorArr;

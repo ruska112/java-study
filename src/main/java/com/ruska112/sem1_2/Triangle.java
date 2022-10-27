@@ -2,7 +2,7 @@ package com.ruska112.sem1_2;
 
 import com.ruska112.c3d.Point3D;
 import com.ruska112.c3d.Vector3D;
-import ruska112.com.github.c3d.*;
+import com.ruska112.c3d.*;
 
 import static com.ruska112.c3d.Vector3DProcessor.isCollinear;
 

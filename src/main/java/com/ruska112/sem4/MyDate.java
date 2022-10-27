@@ -98,22 +98,22 @@ public class MyDate {
                 } else {
                     throw new IllegalArgumentException("Day error");
                 }
-            } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            }
+            if (month == 4 || month == 6 || month == 9 || month == 11) {
                 this.month = months.get(month).toLowerCase();
                 if (day >= 1 && day <= 30) {
                     this.day = day;
                 } else {
                     throw new IllegalArgumentException("Day error");
                 }
-            } else if (month == 2) {
+            }
+            if (month == 2) {
                 this.month = months.get(month).toLowerCase();
                 if (day >= 1 && day <= 28) {
                     this.day = day;
                 } else {
                     throw new IllegalArgumentException("Day error");
                 }
-            } else {
-                throw new IllegalArgumentException("Month error");
             }
         } else {
             throw new IllegalArgumentException("Year error");
@@ -213,6 +213,6 @@ public class MyDate {
     }
 
     public boolean isBefore(MyDate date) {
-        return (date.day < this.day) && (monthsNum.get(date.month.toLowerCase()) <= monthsNum.get(this.month.toLowerCase())) && (date.year <= this.year);
+        return ((date.day < this.day) && (monthsNum.get(date.month.toLowerCase()) <= monthsNum.get(this.month.toLowerCase())) && (date.year <= this.year) || (date.day <= this.day) && (monthsNum.get(date.month.toLowerCase()) < monthsNum.get(this.month.toLowerCase())) && (date.year <= this.year) || (date.day <= this.day) && (monthsNum.get(date.month.toLowerCase()) <= monthsNum.get(this.month.toLowerCase())) && (date.year < this.year));
     }
 }
