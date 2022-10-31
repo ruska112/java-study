@@ -76,11 +76,15 @@ public class Payment {
     }
 
     public boolean equals(Payment payment) {
-        return this.fullName.equals(payment.getFullName())
-                && this.sum == payment.getSum()
-                && this.day == payment.getDay()
-                && this.month == payment.getMonth()
-                && this.year == payment.getYear();
+        if (payment != null) {
+            return this.fullName.equals(payment.getFullName())
+                    && this.sum == payment.getSum()
+                    && this.day == payment.getDay()
+                    && this.month == payment.getMonth()
+                    && this.year == payment.getYear();
+        } else {
+            return false;
+        }
     }
 
     public String toString() {

@@ -6,9 +6,7 @@ public class StringProcessor {
 
     public static String getNCopiesOfString(String s, int n) {
         try {
-            StringBuffer result = new StringBuffer(s.length() * n);
-            result.append(s.repeat(Math.max(0, n)));
-            return result.toString();
+            return s.repeat(Math.max(0, n));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

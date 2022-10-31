@@ -4,7 +4,6 @@ import com.ruska112.c3d.*;
 
 public class Vector3DArray {
     private final Vector3D[] vectorArr;
-    private final Vector3DProcessor v3p = new Vector3DProcessor();
 
     public Vector3DArray(int size) {
         vectorArr = new Vector3D[size];
@@ -52,7 +51,7 @@ public class Vector3DArray {
     public Vector3D sumAllVectors() {
         Vector3D tmp = new Vector3D();
         for (Vector3D vec : vectorArr) {
-            tmp = v3p.sumOfTwoVectors(tmp, vec);
+            tmp = Vector3DProcessor.sumOfTwoVectors(tmp, vec);
         }
         return tmp;
     }
@@ -63,7 +62,7 @@ public class Vector3DArray {
             if (k.length == this.length()) {
                 for (int i = 0; i < this.length(); i++) {
                     Vector3D vec = new Vector3D((k[i] * vectorArr[i].getX()), (k[i] * vectorArr[i].getY()), (k[i] * vectorArr[i].getZ()));
-                    tmp = v3p.sumOfTwoVectors(tmp, vec);
+                    tmp = Vector3DProcessor.sumOfTwoVectors(tmp, vec);
                 }
             }
         } catch (Exception e) {
