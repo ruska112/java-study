@@ -1,7 +1,5 @@
 package com.ruska112;
 
-import com.ruska112.lab2.FinanceReport;
-import com.ruska112.lab2.Payment;
 import com.ruska112.lab2.*;
 
 public class Main {
