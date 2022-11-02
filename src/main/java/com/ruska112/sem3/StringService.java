@@ -37,4 +37,17 @@ public class StringService {
         }
         return result;
     }
+
+    public static String[] addNumAtStart(String[] array) throws IllegalArgumentException {
+        String[] result;
+        if (array != null) {
+            result = new String[array.length];
+            for (int i = 0; i < array.length; i++) {
+                result[i] = String.format("%d %s", (i + 1), array[i]);
+            }
+        } else {
+            throw new IllegalArgumentException("StringService addNumAtStart array is empty");
+        }
+        return result;
+    }
 }

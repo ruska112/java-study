@@ -1,5 +1,7 @@
 package com.ruska112.lab2;
 
+import java.util.Date;
+
 public class Payment {
     private String fullName;
     private int day;

@@ -2,6 +2,7 @@ package com.ruska112.sem3;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class StringServiceTest {
@@ -26,5 +27,14 @@ public class StringServiceTest {
         } catch (IllegalArgumentException exception) {
             System.out.println("Error in getCountOfStringWithoutSubstring: " + exception.getMessage());
         }
+    }
+
+    @Test
+    public void addNumAtStartTest() {
+        String[] arr = new String[3];
+        arr[0] = "f";
+        arr[1] = "s";
+        arr[2] = "t";
+        assertArrayEquals(new String[] {"1 f", "2 s", "3 t"}, StringService.addNumAtStart(arr));
     }
 }
