@@ -1,5 +1,6 @@
 package com.ruska112.sem4;
 
+import java.time.Year;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,23 +8,42 @@ public class MyDate {
     private int day;
     private String month;
     private int year;
-
-    private final Map<Integer, String> months = new HashMap<Integer, String>();
     private final Map<String, Integer> monthsNum = new HashMap<String, Integer>();
 
+    private final Map<Integer, String> months31 = new HashMap<>();
+
+    private final Map<Integer, String> months30 = new HashMap<>();
+
+    private final Map<String, Integer> monthsNum31 = new HashMap<>();
+
+    private final Map<String, Integer> monthsNum30 = new HashMap<>();
+
     {
-        months.put(1, "january");
-        months.put(2, "february");
-        months.put(3, "march");
-        months.put(4, "april");
-        months.put(5, "may");
-        months.put(6, "june");
-        months.put(7, "july");
-        months.put(8, "august");
-        months.put(9, "september");
-        months.put(10, "october");
-        months.put(11, "november");
-        months.put(12, "december");
+        months31.put(1, "january");
+        months31.put(3, "march");
+        months30.put(4, "april");
+        months31.put(5, "may");
+        months30.put(6, "june");
+        months31.put(7, "july");
+        months31.put(8, "august");
+        months30.put(9, "september");
+        months31.put(10, "october");
+        months30.put(11, "november");
+        months31.put(12, "december");
+    }
+
+    {
+        monthsNum31.put("january", 1);
+        monthsNum31.put("march", 3);
+        monthsNum30.put("april", 4);
+        monthsNum31.put("may", 5);
+        monthsNum30.put("june", 6);
+        monthsNum31.put("july", 7);
+        monthsNum31.put("august", 8);
+        monthsNum30.put("september", 9);
+        monthsNum31.put("october", 10);
+        monthsNum30.put("november", 11);
+        monthsNum31.put("december", 12);
     }
 
     {
@@ -47,156 +67,187 @@ public class MyDate {
         year = 7;
     }
 
-    public MyDate(int day, String month, int year) {
-        if (year > 0 && year <= 2200) {
+    public MyDate(int year, String month, int day) {
+        if (year >= 1 && year <= Year.now().getValue()) {
             this.year = year;
-            if (month.equalsIgnoreCase(months.get(1)) ||
-                    month.equalsIgnoreCase(months.get(3)) ||
-                    month.equalsIgnoreCase(months.get(5)) ||
-                    month.equalsIgnoreCase(months.get(7)) ||
-                    month.equalsIgnoreCase(months.get(8)) ||
-                    month.equalsIgnoreCase(months.get(10)) ||
-                    month.equalsIgnoreCase(months.get(12))) {
-                this.month = month;
+            if (months31.containsValue(month.trim().toLowerCase())) {
+                this.month = month.trim().toLowerCase();
                 if (day >= 1 && day <= 31) {
                     this.day = day;
                 } else {
-                    throw new IllegalArgumentException("Day error");
+                    throw new IllegalArgumentException("MyDate constructor with String month: day error");
                 }
-            } else if (month.equalsIgnoreCase(months.get(4)) ||
-                    month.equalsIgnoreCase(months.get(6)) ||
-                    month.equalsIgnoreCase(months.get(9)) ||
-                    month.equalsIgnoreCase(months.get(11))) {
-                this.month = month;
+            } else if (months30.containsValue(month.trim().toLowerCase())) {
+                this.month = month.trim().toLowerCase();
                 if (day >= 1 && day <= 30) {
                     this.day = day;
                 } else {
-                    throw new IllegalArgumentException("Day error");
+                    throw new IllegalArgumentException("MyDate constructor with String month: day error");
                 }
-            } else if (month.equalsIgnoreCase(months.get(2))) {
-                this.month = month;
-                if (day >= 1 && day <= 28) {
-                    this.day = day;
+            } else if (month.trim().equalsIgnoreCase("february")) {
+                this.month = month.trim().toLowerCase();
+                if (year % 4 == 0) {
+                    if (day >= 1 && day <= 29) {
+                        this.day = day;
+                    } else {
+                        throw new IllegalArgumentException("MyDate constructor with String month: day error");
+                    }
                 } else {
-                    throw new IllegalArgumentException("Day error");
+                    if (day >= 1 && day <= 28) {
+                        this.day = day;
+                    } else {
+                        throw new IllegalArgumentException("MyDate constructor with String month: day error");
+                    }
                 }
             } else {
-                throw new IllegalArgumentException("Month error");
+                throw new IllegalArgumentException("MyDate constructor with String month: month error");
             }
         } else {
-            throw new IllegalArgumentException("Year error");
+            throw new IllegalArgumentException("MyDate constructor with String month: year error");
         }
     }
 
-    public MyDate(int day, int month, int year) {
-        if (year > 0 && year <= 2200) {
+    public MyDate(int year, int month, int day) {
+        if (year >= 1 && year <= Year.now().getValue()) {
             this.year = year;
-            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-                this.month = months.get(month).toLowerCase();
+            if (monthsNum31.containsValue(month)) {
+                this.month = months31.get(month).trim().toLowerCase();
                 if (day >= 1 && day <= 31) {
                     this.day = day;
                 } else {
-                    throw new IllegalArgumentException("Day error");
+                    throw new IllegalArgumentException("MyDate constructor with int month: day error");
                 }
-            }
-            if (month == 4 || month == 6 || month == 9 || month == 11) {
-                this.month = months.get(month).toLowerCase();
+            } else if (monthsNum30.containsValue(month)) {
+                this.month = months30.get(month).trim().toLowerCase();
                 if (day >= 1 && day <= 30) {
                     this.day = day;
                 } else {
-                    throw new IllegalArgumentException("Day error");
+                    throw new IllegalArgumentException("MyDate constructor with int month: day error");
                 }
-            }
-            if (month == 2) {
-                this.month = months.get(month).toLowerCase();
-                if (day >= 1 && day <= 28) {
-                    this.day = day;
+            } else if (month == 2) {
+                this.month = "february";
+                if (year % 4 == 0) {
+                    if (day >= 1 && day <= 29) {
+                        this.day = day;
+                    } else {
+                        throw new IllegalArgumentException("MyDate constructor with int month: day error");
+                    }
                 } else {
-                    throw new IllegalArgumentException("Day error");
+                    if (day >= 1 && day <= 28) {
+                        this.day = day;
+                    } else {
+                        throw new IllegalArgumentException("MyDate constructor with int month: day error");
+                    }
                 }
+            } else {
+                throw new IllegalArgumentException("MyDate constructor with int month: month error");
             }
         } else {
-            throw new IllegalArgumentException("Year error");
+            throw new IllegalArgumentException("MyDate constructor with int month: year error");
         }
     }
 
-    public void setDay(int day) throws IllegalArgumentException {
-        if (this.month.equalsIgnoreCase(months.get(1)) ||
-                this.month.equalsIgnoreCase(months.get(3)) ||
-                this.month.equalsIgnoreCase(months.get(5)) ||
-                this.month.equalsIgnoreCase(months.get(7)) ||
-                this.month.equalsIgnoreCase(months.get(8)) ||
-                this.month.equalsIgnoreCase(months.get(10)) ||
-                this.month.equalsIgnoreCase(months.get(12))) {
+    public void setYear(int year) {
+        if (year >= 1 && year <= Year.now().getValue()) {
+            this.year = year;
+        } else {
+            throw new IllegalArgumentException("MyDate setYear: year illegal argument");
+        }
+    }
+
+    public void setMonth(String month) {
+        if (months31.containsValue(month.trim().toLowerCase())) {
+            if (day >= 1 && day <= 31) {
+                this.month = month.trim().toLowerCase();
+            } else {
+                throw new IllegalArgumentException("MyDate setMonth String: month illegal argument");
+            }
+        } else if (months30.containsValue(month.trim().toLowerCase())) {
+            if (day >= 1 && day <= 30) {
+                this.month = month.trim().toLowerCase();
+            } else {
+                throw new IllegalArgumentException("MyDate setMonth String: month illegal argument");
+            }
+        } else if (month.trim().equalsIgnoreCase("february")) {
+            if (this.year % 4 == 0) {
+                if (day >= 1 && day <= 29) {
+                    this.month = month.trim().toLowerCase();
+                } else {
+                    throw new IllegalArgumentException("MyDate setMonth String: month illegal argument");
+                }
+            } else {
+                if (day >= 1 && day <= 28) {
+                    this.month = month.trim().toLowerCase();
+                } else {
+                    throw new IllegalArgumentException("MyDate setMonth String: month illegal argument");
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("MyDate setMonth String: month illegal argument");
+        }
+    }
+
+    public void setMonth(int month) {
+        if (monthsNum31.containsValue(month)) {
+            if (day >= 1 && day <= 31) {
+                this.month = months31.get(month);
+            } else {
+                throw new IllegalArgumentException("MyDate setMonth int: month illegal argument");
+            }
+        } else if (monthsNum30.containsValue(month)) {
+            if (day >= 1 && day <= 30) {
+                this.month = months30.get(month);
+            } else {
+                throw new IllegalArgumentException("MyDate setMonth int: month illegal argument");
+            }
+        } else if (month == 2) {
+            if (this.year % 4 == 0) {
+                if (day >= 1 && day <= 29) {
+                    this.month = "february";
+                } else {
+                    throw new IllegalArgumentException("MyDate setMonth int: month illegal argument");
+                }
+            } else {
+                if (day >= 1 && day <= 28) {
+                    this.month = "february";
+                } else {
+                    throw new IllegalArgumentException("MyDate setMonth int: month illegal argument");
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("MyDate setMonth int: month illegal argument");
+        }
+    }
+
+    public void setDay(int day) {
+        if (months31.containsValue(this.month)) {
             if (day >= 1 && day <= 31) {
                 this.day = day;
             } else {
-                throw new IllegalArgumentException("Day error");
+                throw new IllegalArgumentException("MyDate setDay: day illegal argument");
             }
-        } else if (this.month.equalsIgnoreCase(months.get(4)) ||
-                this.month.equalsIgnoreCase(months.get(6)) ||
-                this.month.equalsIgnoreCase(months.get(9)) ||
-                this.month.equalsIgnoreCase(months.get(11))) {
+        } else if (months30.containsValue(this.month)) {
             if (day >= 1 && day <= 30) {
                 this.day = day;
             } else {
-                throw new IllegalArgumentException("Day error");
+                throw new IllegalArgumentException("MyDate setDay: day illegal argument");
             }
-        } else if (this.month.equalsIgnoreCase(months.get(2)) && (this.year % 4 == 0)) {
-            if (day >= 1 && day <= 29) {
-                this.day = day;
+        } else if (this.month.equals("february")) {
+            if (this.year % 4 == 0) {
+                if (day >= 1 && day <= 29) {
+                    this.day = day;
+                } else {
+                    throw new IllegalArgumentException("MyDate setDay: day illegal argument");
+                }
             } else {
-                throw new IllegalArgumentException("Day error");
-            }
-        } else if (this.month.equalsIgnoreCase(months.get(2))) {
-            if (day >= 1 && day <= 28) {
-                this.day = day;
-            } else {
-                throw new IllegalArgumentException("Day error");
-            }
-        }
-    }
-
-    public void setMonth(String month) throws IllegalArgumentException {
-        if (months.containsValue(month.toLowerCase())) {
-            if (day <= 31 && (month.equalsIgnoreCase(months.get(1)) ||
-                    month.equalsIgnoreCase(months.get(3)) ||
-                    month.equalsIgnoreCase(months.get(5)) ||
-                    month.equalsIgnoreCase(months.get(7)) ||
-                    month.equalsIgnoreCase(months.get(8)) ||
-                    month.equalsIgnoreCase(months.get(10)) ||
-                    month.equalsIgnoreCase(months.get(12)))) {
-                this.month = month;
-            } else if (day <= 30 && (month.equalsIgnoreCase(months.get(4)) ||
-                    month.equalsIgnoreCase(months.get(6)) ||
-                    month.equalsIgnoreCase(months.get(9)) ||
-                    month.equalsIgnoreCase(months.get(11)))) {
-                this.month = month;
-            } else if ((this.year % 4 == 0) && month.equalsIgnoreCase(months.get(2)) && day <= 29) {
-                this.month = month;
-            } else if ((this.year % 4 != 0) && month.equalsIgnoreCase(months.get(2)) && day <= 28) {
-                this.month = month;
-            } else {
-                throw new IllegalArgumentException("Day in month error");
+                if (day >= 1 && day <= 28) {
+                    this.day = day;
+                } else {
+                    throw new IllegalArgumentException("MyDate setDay: day illegal argument");
+                }
             }
         } else {
-            throw new IllegalArgumentException("Month error");
-        }
-    }
-
-    public void setMonth(int month) throws IllegalArgumentException {
-        if (month >= 1 && month <= 12) {
-            this.month = months.get(month).toLowerCase();
-        } else {
-            throw new IllegalArgumentException("Month error");
-        }
-    }
-
-    public void setYear(int year) throws IllegalArgumentException {
-        if (year >= 1970 && year <= 2200) {
-            this.year = year;
-        } else {
-            throw new IllegalArgumentException("Year error");
+            throw new IllegalArgumentException("MyDate setDay: day illegal argument");
         }
     }
 
