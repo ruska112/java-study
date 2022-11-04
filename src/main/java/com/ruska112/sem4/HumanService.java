@@ -17,7 +17,7 @@ public class HumanService {
             }
             return adults;
         } else {
-            throw new IllegalArgumentException("array is null");
+            throw new IllegalArgumentException("HumanService getAllAdults: array is null");
         }
     }
 
@@ -31,7 +31,7 @@ public class HumanService {
             }
             return ages;
         } else {
-            throw new IllegalArgumentException("array is null");
+            throw new IllegalArgumentException("HumanService getAllAdults: array is null");
         }
     }
 }

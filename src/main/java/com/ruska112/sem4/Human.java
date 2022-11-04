@@ -17,7 +17,7 @@ public class Human {
         if (!"".equals(fullName) && fullName != null) {
             this.fullName = fullName;
         } else {
-            throw new IllegalArgumentException("fullName empty");
+            throw new IllegalArgumentException("Human setFullName: fullName illegal argument");
         }
     }
 
