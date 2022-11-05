@@ -259,11 +259,35 @@ public class MyDate {
         return month;
     }
 
+    public int getMonthNum() {
+        return monthsNum.get(this.month);
+    }
+
     public int getYear() {
         return year;
     }
 
+    /*
+    return true if param date before this
+     */
     public boolean isBefore(MyDate date) {
-        return ((date.day < this.day) && (monthsNum.get(date.month.toLowerCase()) <= monthsNum.get(this.month.toLowerCase())) && (date.year <= this.year) || (date.day <= this.day) && (monthsNum.get(date.month.toLowerCase()) < monthsNum.get(this.month.toLowerCase())) && (date.year <= this.year) || (date.day <= this.day) && (monthsNum.get(date.month.toLowerCase()) <= monthsNum.get(this.month.toLowerCase())) && (date.year < this.year));
+        boolean result = false;
+        if (date != null) {
+            if (date.getYear() < this.getYear()) {
+                result = true;
+            } else if (date.getYear() == this.getYear()) {
+                if (date.getMonthNum() < this.getMonthNum()) {
+                    result = true;
+                } else if (date.getMonthNum() == this.getMonthNum()) {
+                    if (date.getDay() < this.getDay()) {
+                        result = true;
+                    }
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("MyDate isBefore: date == null!");
+        }
+
+        return result;
     }
 }
