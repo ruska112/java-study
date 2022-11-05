@@ -9,9 +9,30 @@ public class MyDateTest {
 
     @Test
     public void isBeforeTest() {
-        MyDate date1 = new MyDate(2003, "april", 4);
+        MyDate date1 = new MyDate(2002, "march", 18);
         MyDate date2 = new MyDate(2003, "june", 8);
         assertTrue(date1.isBefore(date2));
+    }
+
+    @Test
+    public void isBeforeTestSameYear() {
+        MyDate date1 = new MyDate(2003, "march", 18);
+        MyDate date2 = new MyDate(2003, "june", 8);
+        assertTrue(date1.isBefore(date2));
+    }
+
+    @Test
+    public void isBeforeTestSameYearSameMonth() {
+        MyDate date1 = new MyDate(2003, "june", 8);
+        MyDate date2 = new MyDate(2003, "june", 18);
+        assertTrue(date1.isBefore(date2));
+    }
+
+    @Test
+    public void isBeforeSameDate() {
+        MyDate date1 = new MyDate(1970, "january", 1);
+        MyDate date2 = new MyDate(1970, "january", 1);
+        assertFalse(date1.isBefore(date2));
     }
 
     @Test(expected = IllegalArgumentException.class)
