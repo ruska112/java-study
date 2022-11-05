@@ -12,14 +12,24 @@ public class HumanServiceTest {
         ArrayList<Human> people = new ArrayList<>();
         people.add(new Human("Ded", new MyDate(2002, 3, 18)));
         people.add(new Human("Hard", new MyDate(2000, 5, 14)));
-        people.add(new Human("Ded", new MyDate(2013, 8, 11)));
+        people.add(new Human("Dedus", new MyDate(2013, 8, 11)));
 
         ArrayList<Human> result = new ArrayList<>();
         result.add(new Human("Ded", new MyDate(2002, 3, 18)));
         result.add(new Human("Hard", new MyDate(2000, 5, 14)));
 
         ArrayList<Human> adults = HumanService.getAllAdults(people);
+    }
 
-        // assert to ArrayList?
+    @Test
+    public void getAgesTest() {
+        ArrayList<Human> people = new ArrayList<>();
+        people.add(new Human("Ded", new MyDate(2002, 3, 18)));
+        people.add(new Human("Hard", new MyDate(2000, 5, 14)));
+        people.add(new Human("Dedus", new MyDate(2013, 8, 11)));
+
+        ArrayList<Integer> ages = HumanService.getAges(people);
+
+        int[] agesInt = new int[] {20, 22, 9};
     }
 }
