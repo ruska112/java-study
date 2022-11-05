@@ -268,18 +268,18 @@ public class MyDate {
     }
 
     /*
-    return true if param date before this
+    return true if this date before param
      */
     public boolean isBefore(MyDate date) {
         boolean result = false;
         if (date != null) {
-            if (date.getYear() < this.getYear()) {
+            if (this.getYear() < date.getYear()) {
                 result = true;
-            } else if (date.getYear() == this.getYear()) {
-                if (date.getMonthNum() < this.getMonthNum()) {
+            } else if (this.getYear() == date.getYear()) {
+                if (this.getMonthNum() < date.getMonthNum()) {
                     result = true;
-                } else if (date.getMonthNum() == this.getMonthNum()) {
-                    if (date.getDay() < this.getDay()) {
+                } else if (this.getMonthNum() == date.getMonthNum()) {
+                    if (this.getDay() < date.getDay()) {
                         result = true;
                     }
                 }
