@@ -17,7 +17,7 @@ public class Human {
         if (!"".equals(fullName) && fullName != null) {
             this.fullName = fullName;
         } else {
-            throw new IllegalArgumentException("Human setFullName: fullName illegal argument");
+            throw new IllegalArgumentException("Human setFullName: argument is empty!");
         }
     }
 
@@ -26,6 +26,10 @@ public class Human {
     }
 
     public void setBirthday(MyDate birthday) {
-        this.birthday = birthday;
+        if (birthday != null) {
+            this.birthday = birthday;
+        } else {
+            throw new IllegalArgumentException("Human setBirthday: argument is null!");
+        }
     }
 }

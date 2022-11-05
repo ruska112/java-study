@@ -1,6 +1,5 @@
 package com.ruska112.sem4;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
