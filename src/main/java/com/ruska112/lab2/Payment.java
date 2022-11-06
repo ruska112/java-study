@@ -72,6 +72,6 @@ public class Payment {
     }
 
     public String toString() {
-        return String.format("ФИО: %s, Дата: %d:%d:d%d, Сумма: %d руб. %d коп.", this.getFullName(), this.getDateOfPayment().getDay(), this.dateOfPayment.getMonthNum(), this.getDateOfPayment().getYear(), (this.getSum() / 100), (this.getSum() % 100));
+        return String.format("ФИО: %s, Дата: %d.%d.%d, Сумма: %d руб. %d коп.", this.getFullName(), this.getDateOfPayment().getDay(), this.dateOfPayment.getMonthNum(), this.getDateOfPayment().getYear(), (this.getSum() / 100), (this.getSum() % 100));
     }
 }

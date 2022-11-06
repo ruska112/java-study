@@ -31,8 +31,8 @@ public class FinanceReport {
     }
 
     public Payment getPayment(int index) {
-        if (index < 0) {
-            throw new IllegalArgumentException("FinanceReport getPayment: index less than 0!");
+        if (index < 0 || index >= this.countOfPayments()) {
+            throw new ArrayIndexOutOfBoundsException("FinanceReport getPayment: index less than 0!");
         } else {
             return paymentsArray[index];
         }
