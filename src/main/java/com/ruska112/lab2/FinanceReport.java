@@ -1,46 +1,61 @@
 package com.ruska112.lab2;
 
+import com.ruska112.sem4.MyDate;
+
 public class FinanceReport {
-    Payment[] paymentsArray;
-    String fullNameReporter;
-    private int day;
-    private int month;
-    private int year;
+    private Payment[] paymentsArray;
+    private String fullNameReporter;
 
-    public FinanceReport(int length, String fullNameReporter, int day, int month, int year) {
-        paymentsArray = new Payment[length];
-        this.fullNameReporter = fullNameReporter;
-        this.day = day;
-        this.month = month;
-        this.year = year;
-    }
+    private MyDate dateOfReport;
 
-    public int length() {
+    public int countOfPayments() {
         return paymentsArray.length;
     }
 
-    public String getPayment(int index) {
-        if (index >= 0 && index <= paymentsArray.length) {
-            return paymentsArray[index].toString();
+    public FinanceReport(int length, String fullNameReporter, MyDate dateOfReport) {
+        if (length <= 0) {
+            throw new IllegalArgumentException("FinanceReport constructor: length argument less or equals 0!");
         } else {
-            throw new IndexOutOfBoundsException("Index error");
+            if (fullNameReporter == null) {
+                throw new IllegalArgumentException("FinanceReport constructor: fullNameReporter argument is null!");
+            } else {
+                if (dateOfReport == null) {
+                    throw new IllegalArgumentException("FinanceReport constructor: dateOfReport argument is null!");
+                } else {
+                    paymentsArray = new Payment[length];
+                    this.fullNameReporter = fullNameReporter;
+                    this.dateOfReport = dateOfReport;
+                }
+            }
         }
     }
 
-    public void setPayment(int index, String fullName, int day, int month, int year, int sum) {
-        if (index >= 0 && index <= paymentsArray.length) {
-            paymentsArray[index] = new Payment(fullName, day, month, year, sum);
+    public Payment getPayment(int index) {
+        if (index < 0) {
+            throw new IllegalArgumentException("FinanceReport getPayment: index less than 0!");
         } else {
-            throw new IndexOutOfBoundsException("Index error");
+            return paymentsArray[index];
+        }
+    }
+
+    public void setPayment(int index, Payment payment) {
+        if (index < 0) {
+            throw new IllegalArgumentException("FinanceReport setPayment: index less than 0!");
+        } else {
+            if (payment == null) {
+                throw new IllegalArgumentException("FinanceReport setPayment: payment argument is null!");
+            } else {
+                paymentsArray[index] = payment;
+            }
         }
     }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder(1024);
-        stringBuilder.append(String.format("[Автор: %s, дата: %d-%d-%d, Платежи: [\n", fullNameReporter, day, month, year));
-        for (int i = 0; i < length(); i++) {
-            if (paymentsArray[i] != null) {
-                stringBuilder.append(paymentsArray[i].toString());
+        stringBuilder.append(String.format("[Автор: %s, дата: %d-%d-%d, Платежи: [\n", this.fullNameReporter, this.dateOfReport.getDay(), this.dateOfReport.getMonthNum(), this.dateOfReport.getYear()));
+        for (int i = 0; i < countOfPayments(); i++) {
+            if (this.paymentsArray[i] != null) {
+                stringBuilder.append(this.paymentsArray[i].toString());
                 stringBuilder.append("\n");
             }
         }

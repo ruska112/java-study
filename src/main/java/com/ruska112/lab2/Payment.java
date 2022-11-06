@@ -50,10 +50,10 @@ public class Payment {
             throw new IllegalArgumentException("Payment constructor: fullName argument is null!");
         } else {
             if (dateOfPayment == null) {
-                throw new IllegalArgumentException("Payment constructor: fullName and dateOfPayment argument is null");
+                throw new IllegalArgumentException("Payment constructor: dateOfPayment argument is null");
             } else {
                 if (sum < 0) {
-                    throw new IllegalArgumentException("Payment constructor: all argument is illegal!");
+                    throw new IllegalArgumentException("Payment constructor: sum less than 0!");
                 } else {
                     this.fullName = fullName;
                     this.dateOfPayment = dateOfPayment;
