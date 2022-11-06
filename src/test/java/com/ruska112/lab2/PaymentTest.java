@@ -64,4 +64,40 @@ public class PaymentTest {
 
         assertFalse(payment1.equals(payment2));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void paymentSetFullNameTest() {
+        Payment payment = new Payment("Ded", new MyDate(2000, 1, 1), 100_000);
+        payment.setFullName(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void paymentSetDateOfPaymentTest() {
+        Payment payment = new Payment("Ded", new MyDate(2000, 1, 1), 100_000);
+        payment.setDateOfPayment(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void paymentSetSumTest() {
+        Payment payment = new Payment("Ded", new MyDate(2000, 1, 1), 100_000);
+        payment.setSum(-1);
+    }
+
+    @Test
+    public void paymentSetFullNameGoodTest() {
+        Payment payment = new Payment("Ded", new MyDate(2000, 1, 1), 100_000);
+        payment.setFullName("Hard");
+    }
+
+    @Test
+    public void paymentSetDateOfPaymentGoodTest() {
+        Payment payment = new Payment("Ded", new MyDate(2000, 1, 1), 100_000);
+        payment.setDateOfPayment(new MyDate(2003, 5, 14));
+    }
+
+    @Test
+    public void paymentSetSumGoodTest() {
+        Payment payment = new Payment("Ded", new MyDate(2000, 1, 1), 100_000);
+        payment.setSum(100_000_000);
+    }
 }
