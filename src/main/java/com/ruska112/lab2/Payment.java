@@ -50,7 +50,7 @@ public class Payment {
             throw new IllegalArgumentException("Payment constructor: fullName argument is null!");
         } else {
             if (dateOfPayment == null) {
-                throw new IllegalArgumentException("Payment constructor: dateOfPayment argument is null");
+                throw new IllegalArgumentException("Payment constructor: dateOfPayment argument is null!");
             } else {
                 if (sum < 0) {
                     throw new IllegalArgumentException("Payment constructor: sum less than 0!");
@@ -72,6 +72,6 @@ public class Payment {
     }
 
     public String toString() {
-        return String.format("ФИО: %s, Дата: %d:%d:d%d, Сумма: %d руб, %d коп", this.getFullName(), this.getDateOfPayment().getDay(), this.dateOfPayment.getMonthNum(), this.getDateOfPayment().getYear(), (this.getSum() / 100), (this.getSum() % 100));
+        return String.format("ФИО: %s, Дата: %d:%d:d%d, Сумма: %d руб. %d коп.", this.getFullName(), this.getDateOfPayment().getDay(), this.dateOfPayment.getMonthNum(), this.getDateOfPayment().getYear(), (this.getSum() / 100), (this.getSum() % 100));
     }
 }
