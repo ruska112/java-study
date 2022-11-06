@@ -1,95 +1,77 @@
 package com.ruska112.lab2;
 
-import java.util.Date;
+import com.ruska112.sem4.MyDate;
 
 public class Payment {
     private String fullName;
-    private int day;
-    private int month;
-    private int year;
+
     private int sum;
 
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        if (day >= 1 && day <= 31) {
-            this.day = day;
-        } else {
-            throw new IllegalArgumentException("Day");
-        }
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        if (month >= 1 && month <= 12) {
-            this.month = month;
-        } else {
-            throw new IllegalArgumentException("Month");
-        }
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        if (year >= 1900 && year <= 2022) {
-            this.year = year;
-        } else {
-            throw new IllegalArgumentException("Year");
-        }
-    }
-
-    public int getSum() {
-        return sum;
-    }
-
-    public void setSum(int sum) {
-        if (sum >= 0) {
-            this.sum = sum;
-        } else {
-            throw new IllegalArgumentException("Sum");
-        }
-    }
+    private MyDate dateOfPayment;
 
     public void setFullName(String fullName) {
-        if (!"".equals(fullName)) {
-            this.fullName = fullName;
+        if (fullName == null) {
+            throw new IllegalArgumentException("Payment setFullName: argument is null!");
         } else {
-            throw new IllegalArgumentException("FullName");
+            this.fullName = fullName;
         }
     }
 
     public String getFullName() {
-        return fullName;
+        return this.fullName;
     }
 
-    public Payment(String fullName, int day, int month, int year, int sum) {
-        setFullName(fullName);
-        setDay(day);
-        setMonth(month);
-        setYear(year);
-        setSum(sum);
+    public void setDateOfPayment(MyDate dateOfPayment) {
+        if (dateOfPayment == null) {
+            throw new IllegalArgumentException("Payment setDateOfPayment: argument is null!");
+        } else {
+            this.dateOfPayment = dateOfPayment;
+        }
+    }
+
+    public MyDate getDateOfPayment() {
+        return this.dateOfPayment;
+    }
+
+    public void setSum(int sum) {
+        if (sum < 0) {
+            throw new IllegalArgumentException("Payment setSum: argument less than 0!");
+        } else {
+            this.sum = sum;
+        }
+    }
+
+    public int getSum() {
+        return this.sum;
+    }
+
+    public Payment(String fullName, MyDate dateOfPayment, int sum) {
+        if (fullName == null) {
+            throw new IllegalArgumentException("Payment constructor: fullName argument is null!");
+        } else {
+            if (dateOfPayment == null) {
+                throw new IllegalArgumentException("Payment constructor: fullName and dateOfPayment argument is null");
+            } else {
+                if (sum < 0) {
+                    throw new IllegalArgumentException("Payment constructor: all argument is illegal!");
+                } else {
+                    this.fullName = fullName;
+                    this.dateOfPayment = dateOfPayment;
+                    this.sum = sum;
+                }
+            }
+        }
     }
 
     public boolean equals(Payment payment) {
-        if (payment != null) {
-            return this.fullName.equals(payment.getFullName())
-                    && this.sum == payment.getSum()
-                    && this.day == payment.getDay()
-                    && this.month == payment.getMonth()
-                    && this.year == payment.getYear();
+        if (payment == null) {
+            throw new IllegalArgumentException("Payment equals: payment argument is null!");
         } else {
-            return false;
+            return (this.fullName.equals(payment.getFullName()) && this.dateOfPayment.equals(payment.getDateOfPayment()) && this.sum == payment.getSum());
         }
     }
 
     public String toString() {
-        return String.format("ФИО: %s, Дата: %d-%d-%d, %d руб. %d коп.", this.fullName, this.day, this.month, this.year, (this.sum / 100), (this.sum % 100));
+        return String.format("ФИО: %s, Дата: %d:%d:d%d, Сумма: %d руб, %d коп", this.getFullName(), this.getDateOfPayment().getDay(), this.dateOfPayment.getMonthNum(), this.getDateOfPayment().getYear(), (this.getSum() / 100), (this.getSum() % 100));
     }
 }

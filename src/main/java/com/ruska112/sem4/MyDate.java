@@ -287,7 +287,14 @@ public class MyDate {
         } else {
             throw new IllegalArgumentException("MyDate isBefore: date == null!");
         }
-
         return result;
+    }
+
+    public boolean equals(MyDate date) {
+        if (date == null) {
+            throw new IllegalArgumentException("MyDate equals: date argument is null!");
+        } else {
+            return (this.day == date.getDay() && this.month.equalsIgnoreCase(date.getMonth()) && this.year == date.getYear());
+        }
     }
 }
