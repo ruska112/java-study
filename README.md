@@ -5,7 +5,7 @@ My attempts to program in java
 
 ### Laboratory works
 - [x] Lab1
-- - [] 1
+- - [ ] 1
 - [ ] Lab2
 - [ ] Lab3
 - [ ] Lab4
