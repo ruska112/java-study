@@ -72,6 +72,12 @@ public class PaymentTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void paymentSetMyDateBadTest() {
+        Payment payment = new Payment("Ded", new MyDate(2000, 1, 1), 100_000);
+        payment.setDateOfPayment(new MyDate(2021, 2, 29));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void paymentSetDateOfPaymentTest() {
         Payment payment = new Payment("Ded", new MyDate(2000, 1, 1), 100_000);
         payment.setDateOfPayment(null);

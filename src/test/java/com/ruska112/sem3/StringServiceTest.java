@@ -23,7 +23,7 @@ public class StringServiceTest {
     public void getCountOfStringsWithoutSubstring() {
         try {
             String[] atrArr = new String[]{"b", "aa", "aaa"};
-            assertEquals(5, StringService.getCountOfStringsWithoutSubstring(atrArr, "a"));
+            assertEquals(1, StringService.getCountOfStringsWithoutSubstring(atrArr, "a"));
         } catch (IllegalArgumentException exception) {
             System.out.println("Error in getCountOfStringWithoutSubstring: " + exception.getMessage());
         }
@@ -33,8 +33,8 @@ public class StringServiceTest {
     public void addNumAtStartTest() {
         String[] arr = new String[3];
         arr[0] = "f";
-        arr[1] = "s";
-        arr[2] = "t";
-        assertArrayEquals(new String[] {"1 f", "2 s", "3 t"}, StringService.addNumAtStart(arr));
+        arr[1] = "";
+        arr[2] = null;
+        assertArrayEquals(new String[] {"1 f", "2 ", "3 "}, StringService.addNumAtStart(arr));
     }
 }

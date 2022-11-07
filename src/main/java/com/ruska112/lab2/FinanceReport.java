@@ -39,7 +39,7 @@ public class FinanceReport {
     }
 
     public void setPayment(int index, Payment payment) {
-        if (index < 0) {
+        if (index < 0 || index >= this.countOfPayments()) {
             throw new IllegalArgumentException("FinanceReport setPayment: index less than 0!");
         } else {
             if (payment == null) {

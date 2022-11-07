@@ -14,7 +14,7 @@ public class FinanceReportTest {
     public void setup() {
         financeReport = new FinanceReport(3, "Ruska", new MyDate(2022, 11, 6));
         for (int i = 0; i < financeReport.countOfPayments(); i++) {
-            financeReport.setPayment(i, new Payment(String.format("%s%d", "ded", i), new MyDate((2002 + i), 3, 18), (100_000 + i)));
+            financeReport.setPayment(i, new Payment(String.format("%s%d", "ded", i), new MyDate((2000 + i), 3, 18), (100_000 + i)));
         }
     }
 
@@ -42,4 +42,10 @@ public class FinanceReportTest {
     public void financeReportGetPaymentTest() {
         System.out.println(financeReport.getPayment(4).toString());
     }
+
+    @Test
+    public void financeReportToStringTest() {
+        System.out.println(financeReport.toString());
+    }
+
 }

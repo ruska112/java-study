@@ -26,9 +26,11 @@ public class StringService {
         int result = 0;
         if (!"".equals(string) && string != null) {
             for (String value : array) {
-                for (int j = 0; j < value.length() - string.length() + 1; j++) {
-                    if ((value.startsWith(string, j))) {
-                        result++;
+                if (value.length() >= string.length()){
+                    for (int j = 0; j < value.length() - string.length() + 1; j++) {
+                        if (!(value.startsWith(string, j))) {
+                            result++;
+                        }
                     }
                 }
             }
@@ -43,7 +45,11 @@ public class StringService {
         if (array != null) {
             result = new String[array.length];
             for (int i = 0; i < array.length; i++) {
-                result[i] = String.format("%d %s", (i + 1), array[i]);
+                if (array[i] != null) {
+                    result[i] = String.format("%d %s", (i + 1), array[i]);
+                } else {
+                    result[i] = String.format("%d ", (i + 1));
+                }
             }
         } else {
             throw new IllegalArgumentException("StringService addNumAtStart array is empty");
