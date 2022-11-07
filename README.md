@@ -13,4 +13,4 @@ My attempts to program in java
 - [x] Sem1
 - [x] Sem2
 - [x] Sem3
-- [ ] Sem4
+- [x] Sem4
