@@ -5,12 +5,13 @@ My attempts to program in java
 
 ### Laboratory works
 - [x] Lab1
+- - [] 1
 - [ ] Lab2
 - [ ] Lab3
 - [ ] Lab4
 
 ### Seminar works
-- [x] Sem1
-- [x] Sem2
+- [ ] Sem1
+- [ ] Sem2
 - [x] Sem3
 - [x] Sem4
