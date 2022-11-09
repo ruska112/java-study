@@ -30,6 +30,16 @@ public class FinanceReport {
         }
     }
 
+    public FinanceReport(FinanceReport financeReport) {
+        this.fullNameReporter = new String(financeReport.getFullNameReporter());
+        this.dateOfReport = financeReport.dateOfReport;
+        paymentsArray = new Payment[financeReport.length()];
+        for (int i = 0; i < financeReport.length(); i++) {
+            Payment payment = financeReport.getPayment(i);
+            paymentsArray[i] = new Payment(payment.getFullName(), payment.getDateOfPayment(), payment.getSum());
+        }
+    }
+
     public Payment getPayment(int index) {
         if (index < 0 || index >= this.countOfPayments()) {
             throw new ArrayIndexOutOfBoundsException("FinanceReport getPayment: index less than 0!");
@@ -48,6 +58,14 @@ public class FinanceReport {
                 paymentsArray[index] = payment;
             }
         }
+    }
+
+    public String getFullNameReporter() {
+        return this.fullNameReporter;
+    }
+
+    public int length() {
+        return paymentsArray.length;
     }
 
     public String toString() {
