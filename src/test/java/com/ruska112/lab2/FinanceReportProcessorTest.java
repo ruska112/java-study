@@ -4,6 +4,8 @@ import com.ruska112.sem4.MyDate;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class FinanceReportProcessorTest {
 
     FinanceReport financeReport;
@@ -56,5 +58,11 @@ public class FinanceReportProcessorTest {
     public void getSumFromDateTest(){
         int sum = FinanceReportProcessor.getSumFromDate(financeReport, new String("18.03.01"));
         System.out.println("getSumFromDateTest\n" + sum + "\n");
+    }
+
+    @Test
+    public void getMonthsWithoutPayments() {
+        ArrayList<String> months = FinanceReportProcessor.getMonthsWithoutPayments(financeReport);
+        System.out.println(months.toString());
     }
 }

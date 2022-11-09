@@ -2,6 +2,8 @@ package com.ruska112.lab2;
 
 import com.ruska112.sem4.MyDate;
 
+import java.util.ArrayList;
+
 public class FinanceReportProcessor {
     public static FinanceReport getPaymentsFromChar(FinanceReport financeReport, char c) {
         if (financeReport == null) {
@@ -69,6 +71,35 @@ public class FinanceReportProcessor {
                 }
             }
             return sum;
+        }
+    }
+
+    public static ArrayList<String> getMonthsWithoutPayments(FinanceReport financeReport) {
+        if (financeReport == null) {
+            throw new IllegalArgumentException("FinanceReportProcessor getAllPaymentsFromChar: financeReport is null");
+        } else {
+            ArrayList<String> months = new ArrayList<>();
+
+            {
+                months.add(0, "january");
+                months.add(1, "february");
+                months.add(2, "march");
+                months.add(3, "april");
+                months.add(4, "may");
+                months.add(5, "june");
+                months.add(6, "july");
+                months.add(7, "august");
+                months.add(8, "september");
+                months.add(9, "october");
+                months.add(10, "november");
+                months.add(11, "december");
+            }
+
+            for (int i = 0; i < financeReport.length(); i++) {
+                MyDate paymentDate = financeReport.getPayment(i).getDateOfPayment();
+                months.remove(paymentDate.getMonth());
+            }
+            return months;
         }
     }
 }
