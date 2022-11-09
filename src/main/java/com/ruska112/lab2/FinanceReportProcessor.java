@@ -1,5 +1,7 @@
 package com.ruska112.lab2;
 
+import com.ruska112.sem4.MyDate;
+
 public class FinanceReportProcessor {
     public static FinanceReport getPaymentsFromChar(FinanceReport financeReport, char c) {
         if (financeReport == null) {
@@ -50,6 +52,23 @@ public class FinanceReportProcessor {
             } else {
                 return new FinanceReport();
             }
+        }
+    }
+
+    public static int getSumFromDate(FinanceReport financeReport, String date) {
+        if (financeReport == null) {
+            throw new IllegalArgumentException("FinanceReportProcessor getAllPaymentsFromChar: financeReport is null");
+        } else {
+            String[] dateArray = date.split("\\.");
+            MyDate myDate = new MyDate((2000 + Integer.parseInt(dateArray[2].toLowerCase())), Integer.parseInt(dateArray[1]), Integer.parseInt(dateArray[0]));
+            int sum = 0;
+            for (int i = 0; i < financeReport.length(); i++) {
+                Payment payment = financeReport.getPayment(i);
+                if (payment.getDateOfPayment().equals(myDate)) {
+                    sum += payment.getSum();
+                }
+            }
+            return sum;
         }
     }
 }
