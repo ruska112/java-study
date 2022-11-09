@@ -1,7 +1,7 @@
 package com.ruska112.lab2;
 
 public class FinanceReportProcessor {
-    public static FinanceReport getAllPaymentsFromChar(FinanceReport financeReport, char c) {
+    public static FinanceReport getPaymentsFromChar(FinanceReport financeReport, char c) {
         if (financeReport == null) {
             throw new IllegalArgumentException("FinanceReportProcessor getAllPaymentsFromChar: financeReport is null");
         } else {
