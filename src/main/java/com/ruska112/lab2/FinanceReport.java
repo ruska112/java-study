@@ -64,6 +64,10 @@ public class FinanceReport {
         return this.fullNameReporter;
     }
 
+    public MyDate getDateOfReport() {
+        return dateOfReport;
+    }
+
     public int length() {
         return paymentsArray.length;
     }
