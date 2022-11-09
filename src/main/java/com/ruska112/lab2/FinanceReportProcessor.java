@@ -7,19 +7,23 @@ public class FinanceReportProcessor {
         } else {
             int len = 0;
             for (int i = 0; i < financeReport.length(); i++) {
-                if (financeReport.getPayment(i).getFullName().charAt(0) == c) {
+                if (financeReport.getPayment(i).getFullName().toLowerCase().charAt(0) == c) {
                     len++;
                 }
             }
-            FinanceReport result = new FinanceReport(len, financeReport.getFullNameReporter(), financeReport.getDateOfReport());
-            int j = 0;
-            for (int i = 0; i < financeReport.length(); i++) {
-                if (financeReport.getPayment(i).getFullName().charAt(0) == c) {
-                    result.setPayment(j, financeReport.getPayment(i));
-                    j++;
+            if (len != 0) {
+                FinanceReport result = new FinanceReport(len, financeReport.getFullNameReporter(), financeReport.getDateOfReport());
+                int j = 0;
+                for (int i = 0; i < financeReport.length(); i++) {
+                    if (financeReport.getPayment(i).getFullName().toLowerCase().charAt(0) == c) {
+                        result.setPayment(j, financeReport.getPayment(i));
+                        j++;
+                    }
                 }
+                return result;
+            } else {
+                return new FinanceReport();
             }
-            return result;
         }
     }
 }

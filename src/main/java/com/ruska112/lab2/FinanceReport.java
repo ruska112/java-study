@@ -12,6 +12,12 @@ public class FinanceReport {
         return paymentsArray.length;
     }
 
+    public FinanceReport() {
+        this.fullNameReporter = new String("NULL");
+        this.dateOfReport = new MyDate(1970, 1, 1);
+        paymentsArray = new Payment[0];
+    }
+
     public FinanceReport(int length, String fullNameReporter, MyDate dateOfReport) {
         if (length <= 0) {
             throw new IllegalArgumentException("FinanceReport constructor: length argument less or equals 0!");
@@ -50,7 +56,7 @@ public class FinanceReport {
 
     public void setPayment(int index, Payment payment) {
         if (index < 0 || index >= this.countOfPayments()) {
-            throw new IllegalArgumentException("FinanceReport setPayment: index less than 0!");
+            throw new IllegalArgumentException("FinanceReport setPayment: index is illegal");
         } else {
             if (payment == null) {
                 throw new IllegalArgumentException("FinanceReport setPayment: payment argument is null!");
