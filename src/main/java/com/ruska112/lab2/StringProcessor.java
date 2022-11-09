@@ -1,5 +1,9 @@
 package com.ruska112.lab2;
 
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class StringProcessor {
 
     private static StringBuffer result;
@@ -42,14 +46,13 @@ public class StringProcessor {
     }
 
     public static void deleteEverySecondChar(StringBuffer str) {
-        try {
-            if (!"".equals(str.toString())) {
-                for (int i = 1; i < str.length(); i++) {
-                    str.deleteCharAt(i);
-                }
+        if (!"".equals(str.toString())) {
+            for (int i = 1; i < str.length(); i++) {
+                str.deleteCharAt(i);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 }
