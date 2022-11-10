@@ -1,7 +1,5 @@
 package com.ruska112.c3d;
 
-import com.ruska112.c3d.*;
-
 public class Vector3D {
     protected Point3D endPoint;
 

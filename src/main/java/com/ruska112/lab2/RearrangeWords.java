@@ -1,7 +1,5 @@
 package com.ruska112.lab2;
 
-import java.util.ArrayList;
-
 public class RearrangeWords {
     public static String rearrangeWords(String input) {
         if (input == null) {

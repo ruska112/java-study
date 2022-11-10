@@ -1,7 +1,5 @@
 package com.ruska112.base;
 
-import java.math.*;
-
 public class SinTab {
     public double a;
     public double b;

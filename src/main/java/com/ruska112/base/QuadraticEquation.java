@@ -1,7 +1,5 @@
 package com.ruska112.base;
 
-import java.math.*;
-
 public class QuadraticEquation {
     // a*x^2 + b*x + c = 0
     public double a;

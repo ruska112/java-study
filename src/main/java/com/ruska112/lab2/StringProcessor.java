@@ -1,9 +1,5 @@
 package com.ruska112.lab2;
 
-import java.util.ArrayList;
-import java.util.Queue;
-import java.util.Stack;
-
 public class StringProcessor {
 
     private static StringBuffer result;

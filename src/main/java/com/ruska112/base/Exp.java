@@ -1,6 +1,5 @@
 package com.ruska112.base;
 
-import java.math.*;
 import java.util.Scanner;
 
 public class Exp {
