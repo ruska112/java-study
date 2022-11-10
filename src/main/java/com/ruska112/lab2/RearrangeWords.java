@@ -10,26 +10,63 @@ public class RearrangeWords {
     }
 
     public static void main(String[] args) {
-        String words = new String(" a  ab   abc");
-        StringBuffer seq = new StringBuffer(words);
-        System.out.println(seq.toString());
-        int i = 1;
-        int j = 0;
-        while (i < words.length() - 1) {
-            if (seq.substring(i, i + 1).equals(" ") && seq.substring(i - 1, i).equals(" ")) {
-                j++;
-            }
-            if (!seq.substring(i, i + 1).equals(" ") && seq.substring(i - 1, i).equals(" ")) {
-                StringBuffer space = new StringBuffer();
-                space.append(" ".repeat(Math.max(0, j - 1)));
-                space.append(".");
-                seq.insert(i, space);
-                j = 0;
-            }
+        String input = new String(" a  bb   ccc    ");
+        StringBuffer seq = new StringBuffer(input);
+        ArrayList<String> result = new ArrayList<>();
+        boolean flag = true;
+        int i, j, spaceLen, wordLen, n;
+        i = 0;
+        j = input.length() - 1;
+        spaceLen = 0;
+        wordLen = 0;
+        n = input.length();
 
-            i++;
+        if (seq.charAt(0) == ' ') {
+            flag = false;
+        } else {
+            flag = true;
         }
 
-        System.out.println(seq.toString());
+        while (i < n || j > 0) {
+            if (!flag) {
+                if (seq.charAt(i) == ' ') {
+                    spaceLen++;
+                    if (i + 1 != n) {
+                        if (seq.charAt(i + 1) != ' ') {
+                            result.add(seq.substring(i + 1 - spaceLen, i + 1));
+                            flag = true;
+                            spaceLen = 0;
+                        }
+                    } else {
+                        result.add(seq.substring(i + 1 - spaceLen, n));
+                        flag = true;
+                    }
+                }
+                i++;
+            }
+            if (flag) {
+                if (seq.charAt(j) != ' ') {
+                    wordLen++;
+                    if (j - 1 != -1) {
+                        if (seq.charAt(j - 1) == ' ') {
+                            result.add(seq.substring(j, j + wordLen));
+                            flag = false;
+                            wordLen = 0;
+                        }
+                    } else {
+                        result.add(seq.substring(j, j + wordLen));
+                        flag = false;
+                    }
+                }
+                j--;
+            }
+        }
+
+        StringBuffer str = new StringBuffer();
+        for (String s : result) {
+            str.append(s);
+        }
+
+        System.out.println(str.toString());
     }
 }
