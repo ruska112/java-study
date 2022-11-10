@@ -18,7 +18,7 @@ public class RearrangeWords {
         }
 
         while (i < string.length() || j > 0) {
-            if (!flag) {
+            if (!flag && i <= string.length()) {
                 if (seq.charAt(i) == ' ') {
                     spaceLen++;
                     if (i + 1 != string.length()) {
@@ -34,7 +34,7 @@ public class RearrangeWords {
                 }
                 i++;
             }
-            if (flag) {
+            if (flag && j >= 0) {
                 if (seq.charAt(j) != ' ') {
                     wordLen++;
                     if (j - 1 != -1) {
