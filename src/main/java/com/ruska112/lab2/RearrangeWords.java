@@ -9,30 +9,24 @@ public class RearrangeWords {
         } else {
             if (string.length() != 0) {
                 StringBuffer seq = new StringBuffer(string);
-                ArrayList<String> result = new ArrayList<>();
+                StringBuffer result = new StringBuffer();
                 boolean flag = true;
-                int i, j, spaceLen, wordLen;
-                i = 0;
-                j = string.length() - 1;
-                spaceLen = 0;
-                wordLen = 0;
-
+                int i = 0, j = string.length() - 1, spaceLen = 0, wordLen = 0;
                 if (seq.charAt(0) == ' ') {
                     flag = false;
                 }
-
                 while (i < string.length() || j > 0) {
                     if (!flag && i <= string.length()) {
                         if (seq.charAt(i) == ' ') {
                             spaceLen++;
                             if (i + 1 != string.length()) {
                                 if (seq.charAt(i + 1) != ' ') {
-                                    result.add(seq.substring(i + 1 - spaceLen, i + 1));
+                                    result.append(seq.substring(i + 1 - spaceLen, i + 1));
                                     flag = true;
                                     spaceLen = 0;
                                 }
                             } else {
-                                result.add(seq.substring(i + 1 - spaceLen, string.length()));
+                                result.append(seq.substring(i + 1 - spaceLen, string.length()));
                                 flag = true;
                             }
                         }
@@ -43,25 +37,19 @@ public class RearrangeWords {
                             wordLen++;
                             if (j - 1 != -1) {
                                 if (seq.charAt(j - 1) == ' ') {
-                                    result.add(seq.substring(j, j + wordLen));
+                                    result.append(seq.substring(j, j + wordLen));
                                     flag = false;
                                     wordLen = 0;
                                 }
                             } else {
-                                result.add(seq.substring(j, j + wordLen));
+                                result.append(seq.substring(j, j + wordLen));
                                 flag = false;
                             }
                         }
                         j--;
                     }
                 }
-
-                StringBuffer str = new StringBuffer();
-                for (String s : result) {
-                    str.append(s);
-                }
-
-                return str.toString();
+                return result.toString();
             } else {
                 return string;
             }
