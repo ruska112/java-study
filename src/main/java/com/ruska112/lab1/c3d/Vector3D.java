@@ -1,4 +1,4 @@
-package com.ruska112.c3d;
+package com.ruska112.lab1.c3d;
 
 public class Vector3D {
     protected Point3D endPoint;

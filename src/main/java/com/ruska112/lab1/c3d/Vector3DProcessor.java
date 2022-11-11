@@ -1,4 +1,4 @@
-package com.ruska112.c3d;
+package com.ruska112.lab1.c3d;
 
 public class Vector3DProcessor {
     public static Vector3D sumOfTwoVectors(Vector3D v, Vector3D u) {

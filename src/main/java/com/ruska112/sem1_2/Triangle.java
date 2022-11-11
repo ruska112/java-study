@@ -1,9 +1,9 @@
 package com.ruska112.sem1_2;
 
-import com.ruska112.c3d.Point3D;
-import com.ruska112.c3d.Vector3D;
+import com.ruska112.lab1.c3d.Point3D;
+import com.ruska112.lab1.c3d.Vector3D;
 
-import static com.ruska112.c3d.Vector3DProcessor.isCollinear;
+import static com.ruska112.lab1.c3d.Vector3DProcessor.isCollinear;
 
 public class Triangle {
     private Point3D point1;
@@ -11,21 +11,23 @@ public class Triangle {
     private Point3D point3;
 
     public Triangle(Point3D point1, Point3D point2, Point3D point3) {
-        try {
-            if (point1 != null && point2 != null && point3 != null) {
-                if (!point1.equals(point2) && !point2.equals(point3) && !point3.equals(point1)) {
-                    Vector3D v1 = new Vector3D(point1);
-                    Vector3D v2 = new Vector3D(point2);
-                    Vector3D v3 = new Vector3D(point3);
-                    if (!isCollinear(v1, v2) && !isCollinear(v2, v3) && !isCollinear(v1, v3)) {
-                        this.point1 = point1;
-                        this.point2 = point2;
-                        this.point3 = point3;
-                    }
+        if (point1 != null && point2 != null && point3 != null) {
+            if (!point1.equals(point2) && !point2.equals(point3) && !point3.equals(point1)) {
+                Vector3D v1 = new Vector3D(point1);
+                Vector3D v2 = new Vector3D(point2);
+                Vector3D v3 = new Vector3D(point3);
+                if (!isCollinear(v1, v2) && !isCollinear(v2, v3) && !isCollinear(v1, v3)) {
+                    this.point1 = point1;
+                    this.point2 = point2;
+                    this.point3 = point3;
+                } else {
+                    throw new IllegalArgumentException("Triangle constructor: collinear points");
                 }
-            }
-        } catch (Exception e) {
-            System.out.println("points == null");
+            } else {
+                throw new IllegalArgumentException("Triangle constructor: equals points");
+           }
+        } else {
+            throw new IllegalArgumentException("Triangle constructor: null point");
         }
     }
 

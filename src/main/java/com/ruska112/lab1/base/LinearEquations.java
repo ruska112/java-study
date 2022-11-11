@@ -1,4 +1,4 @@
-package com.ruska112.base;
+package com.ruska112.lab1.base;
 
 public class LinearEquations {
     // a1*x + b1*y = c1

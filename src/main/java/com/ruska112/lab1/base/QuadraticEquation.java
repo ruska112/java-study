@@ -1,4 +1,4 @@
-package com.ruska112.base;
+package com.ruska112.lab1.base;
 
 public class QuadraticEquation {
     // a*x^2 + b*x + c = 0

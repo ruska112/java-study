@@ -1,4 +1,4 @@
-package com.ruska112.c3d;
+package com.ruska112.lab1.c3d;
 
 public class Point3D {
     private double x;
