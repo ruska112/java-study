@@ -50,8 +50,26 @@ public class Point3D {
         this.z = z;
     }
     
-    public boolean equals(Point3D point3D) {
-        return this.x == point3D.getX() && this.y == point3D.getY() && this.z == point3D.getZ();
+    public boolean equals(Point3D point3D, double epsilon) {
+        if (point3D == null) {
+            throw new IllegalArgumentException("Point3D equals: point is null");
+        }
+        if (epsilon == 0) {
+            throw new IllegalArgumentException("Point3D equals: epsilon 0");
+        }
+        boolean result = false;
+        if (this.x - point3D.getX() <= epsilon) {
+            if (this.y - point3D.getY() <= epsilon) {
+                if (this.z - point3D.getZ() <= epsilon) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    public String toString() {
+        return String.format("(x = %f; y = %f, z = %f)", this.x, this.y, this.z);
     }
 
     public void print() {

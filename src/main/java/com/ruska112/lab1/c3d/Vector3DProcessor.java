@@ -30,43 +30,9 @@ public class Vector3DProcessor {
 
     public static boolean isCollinear(Vector3D v, Vector3D u) {
         boolean result = false;
-        if (v.getX() != 0 && v.getY() != 0 && v.getZ() != 0) {
-            double x = v.getX() / u.getX();
-            double y = v.getY() / u.getY();
-            double z = v.getZ() / u.getZ();
-            if ((x == y && y == z)) {
-                result = true;
-            }
-        }
-        if ((v.getX() == 0) && (v.getY() == 0) && !result) {
+        Vector3D vectorComposition = vectorComposition(v, u);
+        if (vectorComposition.equals(new Vector3D(0, 0, 0))) {
             result = true;
-        }
-        if ((v.getX() == 0) && (v.getZ() == 0) && !result) {
-            result = true;
-        }
-        if ((v.getY() == 0) && (v.getZ() == 0) && !result) {
-            result = true;
-        }
-        if (v.getZ() == 0 && !result) {
-            double x = v.getX() / u.getX();
-            double y = v.getY() / u.getY();
-            if (x == y) {
-                result = true;
-            }
-        }
-        if (v.getY() == 0 && !result) {
-            double x = v.getX() / u.getX();
-            double z = v.getZ() / u.getZ();
-            if (x == z) {
-                result = true;
-            }
-        }
-        if (v.getX() == 0 && !result) {
-            double y = v.getY() / u.getY();
-            double z = v.getZ() / u.getZ();
-            if (y == z) {
-                result = true;
-            }
         }
         return result;
     }
