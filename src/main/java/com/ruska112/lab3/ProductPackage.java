@@ -22,6 +22,7 @@ public class ProductPackage {
         if (weight <= 0) {
             throw new IllegalArgumentException("ProductPackage setWeight: weight less than 0");
         }
+        this.weight = weight;
     }
 
     public double getWeight() {
