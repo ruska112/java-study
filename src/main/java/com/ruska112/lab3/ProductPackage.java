@@ -1,8 +1,8 @@
 package com.ruska112.lab3;
 
 public class ProductPackage {
-    String title;
-    double weight;
+    private String title;
+    private double weight;
 
     public void setTitle(String title) {
         if (title == null) {
