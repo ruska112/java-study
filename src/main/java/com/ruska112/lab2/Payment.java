@@ -63,6 +63,13 @@ public class Payment {
         }
     }
 
+    public int hashCode() {
+        int result = fullName.hashCode();
+        result += sum;
+        result += dateOfPayment.hashCode();
+        return result;
+    }
+
     public boolean equals(Payment payment) {
         if (payment == null) {
             throw new IllegalArgumentException("Payment equals: payment argument is null!");

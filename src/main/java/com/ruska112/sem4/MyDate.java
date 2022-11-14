@@ -290,6 +290,13 @@ public class MyDate {
         return result;
     }
 
+    public int hashCode() {
+        int result = month.hashCode();
+        result += 112 * year;
+        result += 112 * day;
+        return result;
+    }
+
     public boolean equals(MyDate date) {
         if (date == null) {
             throw new IllegalArgumentException("MyDate equals: date argument is null!");
