@@ -1,4 +1,4 @@
-package com.ruska112.sem1_2;
+package com.ruska112.sem2;
 
 import com.ruska112.lab1.c3d.Point3D;
 import com.ruska112.lab1.c3d.Vector3D;

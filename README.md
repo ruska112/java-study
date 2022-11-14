@@ -72,7 +72,6 @@ My attempts to program in java
 - - [ ] 4
 
 ### Seminar works
-- [ ] Sem1
 - [ ] Sem2
 - [x] Sem3
 - [x] Sem4
