@@ -18,9 +18,9 @@ public class PackagedWeightProduct extends PackagedProduct {
         super();
         setWeight(100);
     }
-    //TODO: edit constructor
-    public PackagedWeightProduct(String title, String description, ProductPackage productPackage, double weight) {
-        super(title, description, productPackage);
+
+    public PackagedWeightProduct(Product product, ProductPackage productPackage, double weight) {
+        super(product, productPackage);
         setWeight(weight);
     }
 

@@ -18,9 +18,9 @@ public class PackagedPieceProduct extends PackagedProduct {
         super();
         setAmount(1);
     }
-    //TODO: edit constructor
-    public PackagedPieceProduct(String title, String description, ProductPackage productPackage, int amount) {
-        super(title, description, productPackage);
+    
+    public PackagedPieceProduct(Product product, ProductPackage productPackage, int amount) {
+        super(product, productPackage);
         setAmount(amount);
     }
 

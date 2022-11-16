@@ -19,8 +19,8 @@ public class PackagedProduct extends Product {
         setProductPackage(new ProductPackage("Package", 100));
     }
 
-    public PackagedProduct(String title, String description, ProductPackage productPackage) {
-        super();
+    public PackagedProduct(Product product, ProductPackage productPackage) {
+        super(product.getTitle(), product.getDescription());
         setProductPackage(new ProductPackage("Package", 100));
     }
 
