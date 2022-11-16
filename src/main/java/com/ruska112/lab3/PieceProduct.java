@@ -1,7 +1,7 @@
 package com.ruska112.lab3;
 
 public class PieceProduct extends Product {
-    private double weight;
+    protected double weight;
 
     public void setWeight(double weight) {
         if (weight <= 0) {
@@ -12,6 +12,16 @@ public class PieceProduct extends Product {
 
     public double getWeight() {
         return weight;
+    }
+
+    public PieceProduct() {
+        super("PieceProduct", "Description");
+        setWeight(100);
+    }
+
+    public PieceProduct(PieceProduct pieceProduct) {
+        super(pieceProduct.getTitle(), pieceProduct.getDescription());
+        setWeight(pieceProduct.getWeight());
     }
 
     public PieceProduct(String title, String description, double weight) {
@@ -33,6 +43,6 @@ public class PieceProduct extends Product {
     }
 
     public String toString() {
-        return String.format("Title: %s, Description: %s, Weight: %f", getTitle(), getDescription(), weight);
+        return String.format("Title: %s\nDescription: %s\nWeight: %f\n", getTitle(), getDescription(), weight);
     }
 }

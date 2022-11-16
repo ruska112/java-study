@@ -1,8 +1,8 @@
 package com.ruska112.lab3;
 
 public class Product {
-    private String title;
-    private String description;
+    protected String title;
+    protected String description;
 
     public void setTitle(String title) {
         if (title == null) {

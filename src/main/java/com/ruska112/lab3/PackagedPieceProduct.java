@@ -1,8 +1,9 @@
 package com.ruska112.lab3;
 
-public class PackagedPieceProduct extends PackagedProduct {
+public class PackagedPieceProduct extends PieceProduct {
     private int amount;
-    // TODO: add getNetWeight getGrossWeight
+    public ProductPackage productPackage;
+
     public void setAmount(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("PackagedPieceProduct setAmount: amount less or equals 0");
@@ -11,33 +12,43 @@ public class PackagedPieceProduct extends PackagedProduct {
     }
 
     public int getAmount() {
-        return this.amount;
+        return amount;
     }
 
-    public PackagedPieceProduct() {
-        super();
-        setAmount(1);
+    public void setProductPackage(ProductPackage productPackage) {
+        if (productPackage == null) {
+            throw new IllegalArgumentException("PackagedPieceProduct setProductPackage: productPackage is null");
+        }
+        this.productPackage = productPackage;
     }
-    
-    public PackagedPieceProduct(Product product, ProductPackage productPackage, int amount) {
-        super(product, productPackage);
+
+    public ProductPackage getProductPackage() {
+        return productPackage;
+    }
+
+    public PackagedPieceProduct(PieceProduct pieceProduct, int amount, ProductPackage productPackage) {
+        super(pieceProduct);
         setAmount(amount);
+        setProductPackage(productPackage);
+    }
+
+    public double getNetWeight() {
+        return amount * weight;
+    }
+
+    public double getGrossWeight() {
+        return amount * weight + productPackage.getWeight();
     }
 
     public int hashCode() {
-        int result = super.hashCode();
-        result += 69 * amount;
-        return result;
+        return super.hashCode() + productPackage.hashCode() + amount;
     }
 
-    public boolean equals(PackagedProduct packagedProduct) {
-        if (packagedProduct == null) {
-            throw new IllegalArgumentException("PackagedPieceProduct equals: packagedProduct is null");
-        }
-        return this.hashCode() == packagedProduct.hashCode();
+    public boolean equals(PackagedPieceProduct packagedPieceProduct) {
+        return hashCode() == packagedPieceProduct.hashCode();
     }
 
     public String toString() {
-        return String.format("Product Title: %s\nProductDescription: %s\nPackage Title: %s\nPackage Weight: %f\nAmount: %d\n", this.getTitle(), this.getDescription(), this.getProductPackage().getTitle(), this.getProductPackage().getWeight(), this.getAmount());
+        return String.format("Title: %s\nDescription: %s\nWeight: %f\nAmount: %d\nPackage Title: %s\nPackage Weight: %f\n", title, description, weight, amount, productPackage.getTitle(), productPackage.getWeight());
     }
 }
