@@ -11,7 +11,7 @@ public class PackagedWeightProduct extends PackagedProduct {
     }
 
     public double getWeight() {
-        return weight;
+        return this.weight;
     }
 
     public PackagedWeightProduct() {
@@ -38,6 +38,6 @@ public class PackagedWeightProduct extends PackagedProduct {
     }
 
     public String toString() {
-        return String.format("Product Title: %s\nProductDescription: %s\nPackage Title: %s\nPackage Weight: %f\nWeight: %s\n", this.getTitle(), this.getDescription(), this.getProductPackage().getTitle(), this.getProductPackage().getWeight(), this.getWeight());
+        return String.format("Product Title: %s\nProductDescription: %s\nPackage Title: %s\nPackage Weight: %f\nWeight: %f\n", this.getTitle(), this.getDescription(), this.getProductPackage().getTitle(), this.getProductPackage().getWeight(), this.getWeight());
     }
 }
