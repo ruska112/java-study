@@ -2,7 +2,7 @@ package com.ruska112.lab3;
 
 public class PackagedWeightProduct extends PackagedProduct {
     private double weight;
-
+    // TODO: add getNetWeight getGrossWeight
     public void setWeight(double weight) {
         if (weight <= 0) {
             throw new IllegalArgumentException("PackagedWeightProduct setWeight: weight less than 0");
@@ -18,7 +18,7 @@ public class PackagedWeightProduct extends PackagedProduct {
         super();
         setWeight(100);
     }
-
+    //TODO: edit constructor
     public PackagedWeightProduct(String title, String description, ProductPackage productPackage, double weight) {
         super(title, description, productPackage);
         setWeight(weight);

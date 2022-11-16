@@ -2,7 +2,7 @@ package com.ruska112.lab3;
 
 public class PackagedPieceProduct extends PackagedProduct {
     private int amount;
-
+    // TODO: add getNetWeight getGrossWeight
     public void setAmount(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("PackagedPieceProduct setAmount: amount less or equals 0");
@@ -18,7 +18,7 @@ public class PackagedPieceProduct extends PackagedProduct {
         super();
         setAmount(1);
     }
-
+    //TODO: edit constructor
     public PackagedPieceProduct(String title, String description, ProductPackage productPackage, int amount) {
         super(title, description, productPackage);
         setAmount(amount);
