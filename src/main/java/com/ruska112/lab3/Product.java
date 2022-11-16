@@ -32,6 +32,11 @@ public class Product {
         return description;
     }
 
+    public Product() {
+        this.title = "Product";
+        this.description = "Description";
+    }
+
     public Product(String title, String description) {
         setTitle(title);
         setDescription(description);
