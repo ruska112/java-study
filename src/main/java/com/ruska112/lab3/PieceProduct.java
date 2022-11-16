@@ -16,16 +16,11 @@ public class PieceProduct extends Product {
 
     public PieceProduct(String title, String description, double weight) {
         super(title, description);
-        if (weight >= 1) {
-            setWeight(weight);
-        } else {
-            throw new IllegalArgumentException("PieceProduct constructor: weight less or equals 0");
-        }
+        setWeight(weight);
     }
 
     public int hashCode() {
-        int result = getTitle().hashCode();
-        result += getDescription().hashCode();
+        int result = super.hashCode();
         result += (int) weight;
         return result;
     }

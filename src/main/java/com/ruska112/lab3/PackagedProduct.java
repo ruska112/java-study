@@ -26,8 +26,7 @@ public class PackagedProduct extends Product {
 
     public int hashCode() {
         int result = productPackage.hashCode();
-        result += getTitle().hashCode();
-        result += getDescription().hashCode();
+        result += super.hashCode();
         return result;
     }
 
@@ -39,6 +38,6 @@ public class PackagedProduct extends Product {
     }
 
     public String toString() {
-        return String.format("Title: %s, Description: %s, Package Title: %s, Package Weight: %f", getTitle(), getDescription(), this.productPackage.getTitle(), this.productPackage.getWeight());
+        return String.format("Title: %s, Description: %s, Package Title: %s, Package Weight: %f", this.getTitle(), this.getDescription(), this.getProductPackage().getTitle(), this.getProductPackage().getWeight());
     }
 }
