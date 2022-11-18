@@ -1,4 +1,4 @@
-package com.ruska112.lab3;
+package com.ruska112.lab3.product;
 
 public class PackagedWeightProduct extends WeightProduct {
     private double weight;
