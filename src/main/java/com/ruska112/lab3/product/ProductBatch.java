@@ -1,7 +1,6 @@
 package com.ruska112.lab3.product;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class ProductBatch {
     private String description;
@@ -21,14 +20,23 @@ public class ProductBatch {
         return products;
     }
 
+    public double getWeight() {
+        double result = 0;
+        for (PackagedProduct product : products) {
+            if (product instanceof PackagedPieceProduct packagedPieceProduct) {
+                result += packagedPieceProduct.getGrossWeight();
+            }
+        }
+        return result;
+    }
+
     public int hashCode() {
         return description.hashCode() + Arrays.hashCode(products);
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ProductBatch)) return false;
-        ProductBatch that = (ProductBatch) o;
+        if (!(o instanceof ProductBatch that)) return false;
         return this.hashCode() == that.hashCode();
     }
 
