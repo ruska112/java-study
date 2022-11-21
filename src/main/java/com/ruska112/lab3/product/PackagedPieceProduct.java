@@ -1,8 +1,8 @@
 package com.ruska112.lab3.product;
 
-public class PackagedPieceProduct extends PieceProduct {
+public class PackagedPieceProduct extends PackagedProduct {
     private int amount;
-    public ProductPackage productPackage;
+    private PieceProduct product;
 
     public void setAmount(int amount) {
         if (amount <= 0) {
@@ -15,29 +15,21 @@ public class PackagedPieceProduct extends PieceProduct {
         return amount;
     }
 
-    public void setProductPackage(ProductPackage productPackage) {
-        if (productPackage == null) {
-            throw new IllegalArgumentException("PackagedPieceProduct setProductPackage: productPackage is null");
+    public PackagedPieceProduct(PieceProduct product, int amount, ProductPackage productPackage) {
+        super(product, productPackage);
+        if (product == null) {
+            throw new IllegalArgumentException();
         }
-        this.productPackage = productPackage;
-    }
-
-    public ProductPackage getProductPackage() {
-        return productPackage;
-    }
-
-    public PackagedPieceProduct(PieceProduct pieceProduct, int amount, ProductPackage productPackage) {
-        super(pieceProduct);
         setAmount(amount);
-        setProductPackage(productPackage);
+        this.product = product;
     }
 
     public double getNetWeight() {
-        return amount * weight;
+        return amount * product.getWeight();
     }
 
     public double getGrossWeight() {
-        return amount * weight + productPackage.getWeight();
+        return amount * product.getWeight() + productPackage.getWeight();
     }
 
     public int hashCode() {
@@ -49,6 +41,6 @@ public class PackagedPieceProduct extends PieceProduct {
     }
 
     public String toString() {
-        return String.format("Title: %s\nDescription: %s\nWeight: %f\nAmount: %d\nPackage Title: %s\nPackage Weight: %f\n", title, description, weight, amount, productPackage.getTitle(), productPackage.getWeight());
+        return String.format("Title: %s\nDescription: %s\nWeight: %f\nAmount: %d\nPackage Title: %s\nPackage Weight: %f\n", title, description, product.getWeight(), amount, productPackage.getTitle(), productPackage.getWeight());
     }
 }

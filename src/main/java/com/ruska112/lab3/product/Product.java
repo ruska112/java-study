@@ -37,6 +37,11 @@ public class Product {
         this.description = "Description";
     }
 
+    public Product(Product product) {
+        setTitle(product.getTitle());
+        setDescription(product.getDescription());
+    }
+
     public Product(String title, String description) {
         setTitle(title);
         setDescription(description);

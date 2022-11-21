@@ -1,8 +1,7 @@
 package com.ruska112.lab3.product;
 
-public class PackagedWeightProduct extends WeightProduct {
+public class PackagedWeightProduct extends PackagedProduct {
     private double weight;
-    private ProductPackage productPackage;
 
     public void setWeight(double weight) {
         if (weight <= 0) {
@@ -15,22 +14,11 @@ public class PackagedWeightProduct extends WeightProduct {
         return weight;
     }
 
-    public void setProductPackage(ProductPackage productPackage) {
-        if (productPackage == null) {
-            throw new IllegalArgumentException("PackagedWeightProduct setProductPackage: productPackage is null");
-        }
-        this.productPackage = productPackage;
-    }
-
-    public ProductPackage getProductPackage() {
-        return productPackage;
-    }
-
-    public PackagedWeightProduct(WeightProduct weightProduct, double weight, ProductPackage productPackage) {
-        super(weightProduct);
+    public PackagedWeightProduct(Product product, double weight, ProductPackage productPackage) {
+        super(product, productPackage);
         setWeight(weight);
-        setProductPackage(productPackage);
     }
+
 
     public double getNetWeight() {
         return weight;
@@ -48,7 +36,5 @@ public class PackagedWeightProduct extends WeightProduct {
         return hashCode() == packagedWeightProduct.hashCode();
     }
 
-    public String toString() {
-        return String.format("Title: %s\nDescription: %s\nWeight: %f\nPackage Title: %s\nPackage Weight: %f\n", title, description, weight, productPackage.getTitle(), productPackage.getWeight());
-    }
+
 }
