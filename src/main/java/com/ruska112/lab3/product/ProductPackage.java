@@ -36,7 +36,7 @@ public class ProductPackage {
 
     public int hashCode() {
         int result = title.hashCode();
-        result += weight;
+        result += (int)weight;
         return result;
     }
 
@@ -48,6 +48,6 @@ public class ProductPackage {
     }
 
     public String toString() {
-        return String.format("Title: %s, Weight: %f", title, weight);
+        return String.format("Title: %s, Weight: %.2f", title, weight);
     }
 }
