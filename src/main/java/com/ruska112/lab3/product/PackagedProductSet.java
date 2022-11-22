@@ -8,6 +8,10 @@ public class PackagedProductSet extends PackagedProduct {
         this.products = products;
     }
 
+    public PackagedProduct[] getProducts() {
+        return products;
+    }
+
     public double getGrossWeight() {
         double result = 0;
         for (PackagedProduct product : products) {
