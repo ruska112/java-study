@@ -31,6 +31,11 @@ public class PackagedProduct extends Product {
         setProductPackage(productPackage);
     }
 
+    public PackagedProduct(String title, String description, ProductPackage productPackage) {
+        super(title, description);
+        setProductPackage(productPackage);
+    }
+
     public int hashCode() {
         return super.hashCode() + productPackage.hashCode();
     }

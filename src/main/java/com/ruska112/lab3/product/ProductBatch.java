@@ -26,6 +26,9 @@ public class ProductBatch {
             if (product instanceof PackagedPieceProduct packagedPieceProduct) {
                 result += packagedPieceProduct.getGrossWeight();
             }
+            if (product instanceof PackagedWeightProduct packagedWeightProduct) {
+                result += packagedWeightProduct.getGrossWeight();
+            }
         }
         return result;
     }
