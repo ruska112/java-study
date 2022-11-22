@@ -43,6 +43,6 @@ public class PieceProduct extends Product {
     }
 
     public String toString() {
-        return String.format("Title: %s\nDescription: %s\nWeight: %f\n", getTitle(), getDescription(), weight);
+        return String.format("Title: %s\nDescription: %s\nWeight: %.2f\n", getTitle(), getDescription(), weight);
     }
 }
