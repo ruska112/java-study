@@ -12,12 +12,14 @@ public class FinanceReportProcessorTest {
 
     @Before
     public void setup() {
-        financeReport = new FinanceReport(5, "Ruska", new MyDate(2022, 11, 6));
+        ArrayList<Payment> payments = new ArrayList<Payment>();
         for (int i = 0; i < 3; i++) {
-            financeReport.setPayment(i, new Payment(String.format("%s%d", "ded", i), new MyDate((2000 + i), 3, 18), (100_00 + i)));
+            payments.add(i, new Payment(String.format("%s%d", "ded", i), new MyDate((2000), 3+i, 18), (100_00 + i)));
         }
-        financeReport.setPayment(3, new Payment("Android", new MyDate(2022, 2, 24), 101_000_00));
-        financeReport.setPayment(4, new Payment("Block", new MyDate(2001, 3, 18), 112_00));
+        payments.add(3, new Payment("Android", new MyDate(2022, 2, 24), 101_000_00));
+        payments.add(4, new Payment("alock", new MyDate(2011, 3, 18), 112_00));
+
+        financeReport = new FinanceReport(payments, "Ruska", new MyDate(2022, 11, 6));
     }
 
     @Test
@@ -56,13 +58,13 @@ public class FinanceReportProcessorTest {
 
     @Test
     public void getSumFromDateTest(){
-        int sum = FinanceReportProcessor.getSumFromDate(financeReport, new String("18.03.01"));
+        int sum = FinanceReportProcessor.getSumFromDate(financeReport, new String("18.03.00"));
         System.out.println("getSumFromDateTest\n" + sum + "\n");
     }
 
     @Test
     public void getMonthsWithoutPayments() {
-        ArrayList<String> months = FinanceReportProcessor.getMonthsWithoutPayments(financeReport);
+        ArrayList<String> months = FinanceReportProcessor.getMonthsWithoutPayments(financeReport, 2000);
         System.out.println(months.toString());
     }
 }

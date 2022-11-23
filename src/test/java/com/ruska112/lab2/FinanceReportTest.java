@@ -4,6 +4,8 @@ import com.ruska112.sem4.MyDate;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class FinanceReportTest {
@@ -12,25 +14,22 @@ public class FinanceReportTest {
 
     @Before
     public void setup() {
-        financeReport = new FinanceReport(3, "Ruska", new MyDate(2022, 11, 6));
-        for (int i = 0; i < financeReport.countOfPayments(); i++) {
-            financeReport.setPayment(i, new Payment(String.format("%s%d", "ded", i), new MyDate((2000 + i), 3, 18), (100_000 + i)));
+        ArrayList<Payment> payments = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            payments.add(new Payment(String.format("%s%d", "ded", i), new MyDate((2000 + i), 3, 18), (100_000 + i)));
         }
+        financeReport = new FinanceReport(payments, "Ruska", new MyDate(2022, 11, 6));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void financeReportConstructorLengthTest() {
-        FinanceReport financeReport1 = new FinanceReport(-1, "Ruska", new MyDate(2022, 11, 6));
-    }
 
     @Test(expected = IllegalArgumentException.class)
     public void financeReportConstructorFullNameTest() {
-        FinanceReport financeReport1 = new FinanceReport(3, null, new MyDate(2022, 11, 6));
+        FinanceReport financeReport1 = new FinanceReport(new ArrayList<Payment>(), null, new MyDate(2022, 11, 6));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void financeReportConstructorMyDateTest() {
-        FinanceReport financeReport1 = new FinanceReport(3, "Ruska", null);
+        FinanceReport financeReport1 = new FinanceReport(new ArrayList<Payment>(), "Ruska", null);
     }
 
     @Test

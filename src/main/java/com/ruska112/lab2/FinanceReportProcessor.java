@@ -9,25 +9,15 @@ public class FinanceReportProcessor {
         if (financeReport == null) {
             throw new IllegalArgumentException("FinanceReportProcessor getAllPaymentsFromChar: financeReport is null");
         } else {
-            int len = 0;
+            int j = 0;
+            ArrayList<Payment> my = new ArrayList<>();
             for (int i = 0; i < financeReport.length(); i++) {
                 if (financeReport.getPayment(i).getFullName().toLowerCase().charAt(0) == c) {
-                    len++;
+                    my.add(financeReport.getPayment(i));
                 }
             }
-            if (len != 0) {
-                FinanceReport result = new FinanceReport(len, financeReport.getFullNameReporter(), financeReport.getDateOfReport());
-                int j = 0;
-                for (int i = 0; i < financeReport.length(); i++) {
-                    if (financeReport.getPayment(i).getFullName().toLowerCase().charAt(0) == c) {
-                        result.setPayment(j, financeReport.getPayment(i));
-                        j++;
-                    }
-                }
-                return result;
-            } else {
-                return new FinanceReport();
-            }
+            FinanceReport result = new FinanceReport(my, financeReport.getFullNameReporter(), financeReport.getDateOfReport());
+            return result;
         }
     }
 
@@ -35,25 +25,14 @@ public class FinanceReportProcessor {
         if (financeReport == null) {
             throw new IllegalArgumentException("FinanceReportProcessor getAllPaymentsFromChar: financeReport is null");
         } else {
-            int len = 0;
+            ArrayList<Payment> my = new ArrayList<>();
             for (int i = 0; i < financeReport.length(); i++) {
                 if (financeReport.getPayment(i).getSum() < sum) {
-                    len++;
+                    my.add(financeReport.getPayment(i));
                 }
             }
-            if (len != 0) {
-                FinanceReport result = new FinanceReport(len, financeReport.getFullNameReporter(), financeReport.getDateOfReport());
-                int j = 0;
-                for (int i = 0; i < financeReport.length(); i++) {
-                    if (financeReport.getPayment(i).getSum() < sum) {
-                        result.setPayment(j, financeReport.getPayment(i));
-                        j++;
-                    }
-                }
-                return result;
-            } else {
-                return new FinanceReport();
-            }
+            FinanceReport result = new FinanceReport(my, financeReport.getFullNameReporter(), financeReport.getDateOfReport());
+            return result;
         }
     }
 
@@ -74,7 +53,7 @@ public class FinanceReportProcessor {
         }
     }
 
-    public static ArrayList<String> getMonthsWithoutPayments(FinanceReport financeReport) {
+    public static ArrayList<String> getMonthsWithoutPayments(FinanceReport financeReport, int year) {
         if (financeReport == null) {
             throw new IllegalArgumentException("FinanceReportProcessor getAllPaymentsFromChar: financeReport is null");
         } else {
@@ -96,8 +75,10 @@ public class FinanceReportProcessor {
             }
 
             for (int i = 0; i < financeReport.length(); i++) {
-                MyDate paymentDate = financeReport.getPayment(i).getDateOfPayment();
-                months.remove(paymentDate.getMonth());
+                if (financeReport.getPayment(i).getDateOfPayment().getYear() == year) {
+                    MyDate paymentDate = financeReport.getPayment(i).getDateOfPayment();
+                    months.remove(paymentDate.getMonth());
+                }
             }
             return months;
         }

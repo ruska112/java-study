@@ -1,25 +1,28 @@
 package com.ruska112.lab2;
 
+import com.ruska112.lab3.product.Product;
 import com.ruska112.sem4.MyDate;
 
+import java.util.ArrayList;
+
 public class FinanceReport {
-    private Payment[] paymentsArray;
+    private ArrayList<Payment> paymentsArray;
     private String fullNameReporter;
 
     private MyDate dateOfReport;
 
     public int countOfPayments() {
-        return paymentsArray.length;
+        return paymentsArray.size();
     }
 
     public FinanceReport() {
         this.fullNameReporter = new String("NULL");
         this.dateOfReport = new MyDate(1970, 1, 1);
-        paymentsArray = new Payment[0];
+        paymentsArray.add(new Payment());
     }
 
-    public FinanceReport(int length, String fullNameReporter, MyDate dateOfReport) {
-        if (length <= 0) {
+    public FinanceReport(ArrayList<Payment> paymentsArray, String fullNameReporter, MyDate dateOfReport) {
+        if (paymentsArray == null) {
             throw new IllegalArgumentException("FinanceReport constructor: length argument less or equals 0!");
         } else {
             if (fullNameReporter == null) {
@@ -28,7 +31,7 @@ public class FinanceReport {
                 if (dateOfReport == null) {
                     throw new IllegalArgumentException("FinanceReport constructor: dateOfReport argument is null!");
                 } else {
-                    paymentsArray = new Payment[length];
+                    this.paymentsArray = paymentsArray;
                     this.fullNameReporter = fullNameReporter;
                     this.dateOfReport = dateOfReport;
                 }
@@ -39,10 +42,9 @@ public class FinanceReport {
     public FinanceReport(FinanceReport financeReport) {
         this.fullNameReporter = new String(financeReport.getFullNameReporter());
         this.dateOfReport = financeReport.dateOfReport;
-        paymentsArray = new Payment[financeReport.length()];
         for (int i = 0; i < financeReport.length(); i++) {
             Payment payment = financeReport.getPayment(i);
-            paymentsArray[i] = new Payment(payment.getFullName(), payment.getDateOfPayment(), payment.getSum());
+            paymentsArray.add(new Payment(payment.getFullName(), payment.getDateOfPayment(), payment.getSum()));
         }
     }
 
@@ -50,7 +52,7 @@ public class FinanceReport {
         if (index < 0 || index >= this.countOfPayments()) {
             throw new ArrayIndexOutOfBoundsException("FinanceReport getPayment: index less than 0!");
         } else {
-            return paymentsArray[index];
+            return paymentsArray.get(index);
         }
     }
 
@@ -61,7 +63,7 @@ public class FinanceReport {
             if (payment == null) {
                 throw new IllegalArgumentException("FinanceReport setPayment: payment argument is null!");
             } else {
-                paymentsArray[index] = payment;
+                paymentsArray.set(index, payment);
             }
         }
     }
@@ -75,17 +77,15 @@ public class FinanceReport {
     }
 
     public int length() {
-        return paymentsArray.length;
+        return paymentsArray.size();
     }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder(1024);
         stringBuilder.append(String.format("[Автор: %s, дата: %d-%d-%d, Платежи: [\n", this.fullNameReporter, this.dateOfReport.getDay(), this.dateOfReport.getMonthNum(), this.dateOfReport.getYear()));
-        for (int i = 0; i < countOfPayments(); i++) {
-            if (this.paymentsArray[i] != null) {
-                stringBuilder.append(this.paymentsArray[i].toString());
-                stringBuilder.append("\n");
-            }
+        for (Payment payment : paymentsArray) {
+            stringBuilder.append(payment.toString());
+            stringBuilder.append("\n");
         }
         stringBuilder.append("]]");
         return stringBuilder.toString();

@@ -45,6 +45,12 @@ public class Payment {
         return this.sum;
     }
 
+    public Payment() {
+        this.fullName = "Ded";
+        this.sum = 14052003;
+        this.dateOfPayment = new MyDate(2003, 6, 8);
+    }
+
     public Payment(String fullName, MyDate dateOfPayment, int sum) {
         if (fullName == null) {
             throw new IllegalArgumentException("Payment constructor: fullName argument is null!");
