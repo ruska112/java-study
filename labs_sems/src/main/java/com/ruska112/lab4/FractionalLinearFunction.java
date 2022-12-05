@@ -20,6 +20,10 @@ public class FractionalLinearFunction implements IOneRealArgument {
     }
 
     public FractionalLinearFunction(double a, double b, double c, double d, double leftLimit, double rightLimit) {
+        if (leftLimit > rightLimit) {
+            throw new IllegalArgumentException("Bad limits left less than right");
+        }
+
         this.a = a;
         this.b = b;
         this.c = c;

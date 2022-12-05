@@ -18,6 +18,10 @@ public class ExpFunction implements IOneRealArgument {
     }
 
     public ExpFunction(double a, double b, double leftLimit, double rightLimit) {
+        if (leftLimit > rightLimit) {
+            throw new IllegalArgumentException("Bad limits left less than right");
+        }
+
         this.a = a;
         this.b = b;
         this.leftLimit = leftLimit;
