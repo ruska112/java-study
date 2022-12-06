@@ -30,6 +30,9 @@ public class LinearFunction implements IOneRealArgument {
 
     @Override
     public double solve(double x) {
+        if (x < leftLimit || x > rightLimit) {
+            throw new IllegalArgumentException();
+        }
         return a * x + b;
     }
 }

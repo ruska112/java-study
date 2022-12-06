@@ -34,10 +34,12 @@ public class FractionalLinearFunction implements IOneRealArgument {
 
     @Override
     public double solve(double x) {
+        if (x < leftLimit || x > rightLimit) {
+            throw new IllegalArgumentException();
+        }
         if ((c * x + d) == 0) {
             throw new IllegalArgumentException("denominator equals 0");
-        } else {
-            return (a * x + b) / (c * x + d);
         }
+        return (a * x + b) / (c * x + d);
     }
 }

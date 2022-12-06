@@ -30,6 +30,9 @@ public class SinFunction implements IOneRealArgument {
 
     @Override
     public double solve(double x) {
+        if (x < leftLimit || x > rightLimit) {
+            throw new IllegalArgumentException();
+        }
         return a * Math.sin(b * x);
     }
 }
