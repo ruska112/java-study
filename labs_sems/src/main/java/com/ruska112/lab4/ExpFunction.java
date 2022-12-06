@@ -33,6 +33,6 @@ public class ExpFunction implements IOneRealArgument {
         if (x < leftLimit || x > rightLimit) {
             throw new IllegalArgumentException();
         }
-        return a * Math.exp(x) + b;
+        return (a * Math.pow(Math.E, x) + b);
     }
 }

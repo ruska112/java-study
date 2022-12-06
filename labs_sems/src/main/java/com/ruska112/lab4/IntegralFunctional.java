@@ -16,10 +16,10 @@ public class IntegralFunctional<T extends IOneRealArgument> implements IFunction
         }
 
         double result = 0;
-        double delta = Math.abs(function.getRightLimit() - function.getLeftLimit()) / 2;
+        double delta = Math.abs(function.getRightLimit() - function.getLeftLimit()) / 100;
 
-        for (double i = left; Math.abs(i - right) < 0.001; i += delta) {
-            result += function.solve(left + i * delta + delta / 2) * delta;
+        for (double i = left; Math.abs(i - right) > 0.001; i += delta) {
+            result += function.solve(i + delta / 2) * delta;
         }
         return result;
     }
