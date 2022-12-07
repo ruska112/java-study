@@ -1,7 +1,9 @@
 package com.ruska112.lab4;
 
 import com.ruska112.lab3.product.*;
+
 import static com.ruska112.lab4.ComparatorDemo.sortGoods;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,6 +36,14 @@ public class ComparatorDemoTest {
     public void comparatorDemoTest1() {
         Product[] products = {weightProduct, pieceProduct, product, packagedProduct};
         Product[] goods = {product, packagedProduct, pieceProduct, weightProduct};
+        sortGoods(productComparator, products);
+        assertArrayEquals(goods, products);
+    }
+
+    @Test
+    public void comparatorDemoTest2() {
+        Product[] products = {weightProduct, pieceProduct, packagedProduct, product};
+        Product[] goods = {packagedProduct, product, pieceProduct, weightProduct};
         sortGoods(productComparator, products);
         assertArrayEquals(goods, products);
     }

@@ -24,7 +24,7 @@ public class Polynomial {
         }
         double result = 0;
         for (double odd : odds) {
-            result += Math.pow(x, this.getDegree() - 1) * odd;
+            result += Math.pow(x, this.getDegree()) * odd;
         }
         return result;
     }
@@ -35,7 +35,7 @@ public class Polynomial {
         }
         double result = 0;
         for (int i = 0; i < odds.length-1; i++) {
-            result += Math.pow(x, this.getDegree() - 1) * odds[i] * this.getDegree() - 1 - i;
+            result += Math.pow(x, this.getDegree()) * odds[i] * (this.getDegree() - 1 - i);
         }
         return result;
     }
