@@ -23,30 +23,19 @@ public class ProductComparatorTest {
 
     @Test
     public void compareTest0() {
-         if (productComparator.compare(product, packagedProduct) == 0) {
-             System.out.println(productComparator.compare(product, packagedProduct));
-         }
+        boolean b = (productComparator.compare(product, packagedProduct) == 0);
+        assertTrue(b);
     }
 
     @Test
     public void compareTest1() {
-        if (productComparator.compare(product, weightProduct) < 0) {
-            System.out.println(productComparator.compare(product, weightProduct));
-        }
+        boolean b = (productComparator.compare(product, weightProduct) == 0);
+        assertFalse(b);
     }
 
     @Test
     public void compareTest2() {
-        if (productComparator.compare(pieceProduct, weightProduct) < 0) {
-            System.out.println(productComparator.compare(pieceProduct, weightProduct));
-        }
+        boolean b = (productComparator.compare(pieceProduct, weightProduct) == 0);
+        assertFalse(b);
     }
-
-    @Test
-    public void compareTest3() {
-        if (productComparator.compare(weightProduct, product) > 0) {
-            System.out.println(productComparator.compare(weightProduct, product));
-        }
-    }
-
 }
